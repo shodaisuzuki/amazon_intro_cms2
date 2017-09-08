@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  root :to => 'sites#index'
+  root :to => 'user_sessions#new'
 
   get ':id', to: 'sites#show', as: :site
   patch ':id', to: 'sites#update'
@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   resources :user_sessions
   resources :users
   scope 'user' do
-    resources :sites
+    resources :sites , :except => [:index]
   end
   scope '/sites/:site_id' do
     resources :tags
@@ -27,7 +27,7 @@ Rails.application.routes.draw do
   end
   
   
-  get 'user/login', to: 'user_sessions#new', :as => :login
-  post 'user/logout', to: 'user_sessions#destroy', :as => :logout
+  get 'users/login', to: 'user_sessions#new', :as => :login
+  post 'users/logout', to: 'user_sessions#destroy', :as => :logout
 
 end
