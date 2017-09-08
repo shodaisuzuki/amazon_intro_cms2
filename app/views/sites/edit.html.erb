@@ -1,0 +1,25 @@
+<section class="hero is-fullheight is-bold">
+  <div class="hero-body">
+    <div class="container">
+      <div class="columns is-vcentered">
+        <div class="column is-6 is-offset-3">
+          <nav class="level">
+            <div class="level-left">
+              <div class="level-item">
+                <h1 class="title">
+                  サイト編集
+                </h1>
+              </div>  
+            </div>
+            <div class="level-left">
+              <div class="level-item">
+                <%= link_to '削除', site_path(@site), method: :delete, data: {confirm: "本当に削除しますか？"}, :class => "button is-danger" %>
+              </div>  
+            </div>
+          </nav> 
+          <%= render 'form' %>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

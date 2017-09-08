@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  name: MyString
+  caption: MyText
+  release_status: false
+
+two:
+  user: two
+  name: MyString
+  caption: MyText
+  release_status: false

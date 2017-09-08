@@ -1,0 +1,23 @@
+<h1>タグ管理</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>タグ</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @product.product_tags.each do |product_tag| %>
+      <tr>
+        <td><%= product_tag.tag.name %></td>
+        <td><%= link_to '削除', product_tag_path(@site, @product, product_tag), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= render 'form', product_tag: @product_tag %>
+
+<%= link_to 'タグ登録', tags_path(@site) %>

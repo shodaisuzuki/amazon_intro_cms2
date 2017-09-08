@@ -1,0 +1,79 @@
+<br>
+<div class="container">
+  <div class="columns is-vcentered">
+    <div class="column is-10 is-offset-1"> 
+      <nav class="level">
+        <div class="level-left">
+          <div class="level-item">
+            <h1 class="title">
+              マイページ
+            </h1>
+          </div>  
+        </div>
+        <div class="level-left">
+          <div class="level-item">
+            <h2 class="subtitle">
+              <%= link_to "ユーザ情報を編集する", edit_user_path(current_user.id) %> 
+            </h2>
+          </div>  
+        </div>
+      </nav>   
+      <div class="box">
+        <nav class="level">
+          <div class="level-left">
+            <div class="level-item">
+              <h2 class="subtitle">
+                サイト一覧
+              </h2>
+            </div>  
+          </div>
+          <div class="level-left">
+            <div class="level-item">
+              <h2 class="subtitle">
+                <%= link_to '新規サイト作成', new_site_path %>  
+              </h2>
+            </div>  
+          </div>
+        </nav>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>サイト名</th>
+              <th>紹介文</th>
+              <th>公開</th>
+              <th></th>
+              <th></th>
+              <th></th>
+              <th></th>
+            </tr>
+          </thead>
+          <tfoot>
+            <tr>
+              <th>サイト名</th>
+              <th>紹介文</th>
+              <th>公開</th>
+              <th></th>
+              <th></th>
+              <th></th>
+              <th></th>
+            </tr>
+          </tfoot>
+          <tbody>
+            <% @user.sites.each do |site| %>
+              <tr>
+                <td><%= site.name %></td>
+                <td><%= site.caption %></td>
+                <td><%= site.release_status %></td>
+                <td><%= link_to 'サイトへ移動', site_path(site)%></td>
+                <td><%= link_to 'サイト情報を編集', edit_site_path(site) %></td>
+                <td><%= link_to 'タグの管理', tags_path(site) %></td>
+                <td><%= link_to '商品を追加する', new_product_path(site) %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+      <br>
+    </div>
+  </div>
+</div>

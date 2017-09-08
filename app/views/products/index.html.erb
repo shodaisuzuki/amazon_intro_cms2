@@ -1,0 +1,42 @@
+<!-- いらない -->
+
+
+<!-- <h1>
+  <%= @site.name %>の商品
+</h1>
+
+
+<h2>
+  <%= link_to '商品の追加', new_product_path(@site) %>  
+</h2>  
+
+<table>
+  <thead>
+    <tr>
+      <th>タイトル</th>
+      <th>説明</th>
+      <th>値段</th>
+      <th>Amazon_id</th>
+      <th>画像</th>
+      <th>Release status</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @products.each do |product| %>
+      <tr>
+        <td><%= product.title %></td>
+        <td><%= product.introduction %></td>
+        <td><%= product.price %></td>
+        <td><%= product.amazon_id %></td>
+        <td><%= attachment_image_tag product, :image, :fill, 100, 100, format: 'jpeg' %></td>
+        <td><%= product.release_status %></td>
+        <td><%= link_to '公開ページへ移動', product_path(@site, product) %></td>
+        <td><%= link_to '編集', edit_product_path(@site, product) %></td>
+        <td><%= link_to 'タグ設定', tags_path(@site, product) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+ -->

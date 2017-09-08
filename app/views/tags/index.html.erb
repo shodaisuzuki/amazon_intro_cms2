@@ -1,0 +1,24 @@
+<h1>タグ一覧</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>タグ名</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @tags.each do |tag| %>
+      <tr>
+        <td><%= tag.name %></td>
+        <td><%= link_to '削除', tag_path(@site, tag), method: :delete, data: { confirm: '本当に削除しますか？' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+
+<%= render 'form', tag: @tag %>

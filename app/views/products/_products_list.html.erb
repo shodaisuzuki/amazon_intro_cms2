@@ -1,0 +1,38 @@
+<div class="spacer"></div>
+  <div class="columns">
+    <% @products.each do |product| %>
+      <div class="column is-3">
+        <div class="card">
+          <div class="card-image">
+            <figure class="image is-4by3">
+              <%= attachment_image_tag product, :image, :fill, 300, 225, format: 'jpeg' %>
+            </figure>
+          </div>
+          <div class="card-content">
+            <div class="content">
+              <strong class="subtitle">
+                <%= product.title %>
+              </strong>
+              <span class="subtitle">
+                <%= product.title %>
+              </span>
+              
+            </div>
+          </div>
+          <footer class="card-footer">
+              <%= link_to "詳細", product_path(@site, product), :class=> "card-footer-item" %>
+            <% if current_user == @site.user %>
+              <%= link_to "編集", edit_product_path(@site, product), :class=> "card-footer-item" %>
+              <%= link_to "タグ", product_tags_path(@site, product), :class=> "card-footer-item" %>
+            <% end %>
+          </footer>
+        </div>
+        <br>
+      </div>
+    <% end %>
+    <div class="column is-3">
+      <%= paginate @products %>
+    </div>
+    <br>
+  </div>
+</div>

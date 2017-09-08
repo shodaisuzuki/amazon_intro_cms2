@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>AmazonIntroCms</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <nav class="nav has-shadow" id="top">
+      <div class="container">
+        
+        <% if @product %>
+          <div class="nav-left">
+            <%= link_to site_path(@site), :class => "nav-item" do %>
+              <%= image_tag("/images/site_logo.png", :alt => "サイトロゴ") %>
+            <% end %>
+          </div>
+        <% end %>
+
+        <div class="nav-right nav-menu">
+          <% if @product %>
+            <%= link_to 'サイトトップ', site_path(@site), :class => "nav-item is-tab" %>
+          <% end %>
+
+          <% if current_user %>
+            <%= link_to 'マイページ', user_path(current_user), :class => "nav-item is-tab" %>
+            <span class="nav-item">
+              <%= link_to "ログアウト", :logout, method: :post, :class => "button" %>
+            </span>
+          <% else %>
+            <span class="nav-item">
+              <%= link_to "ログイン", :login, :class => "button" %>
+              <%= link_to "ユーザ登録", new_user_path, :class => "button" %>
+            </span>
+          <% end %>
+        </div>
+      </div>
+    </nav>
+
+    <div>
+      <p id="notice">
+        <%= flash[:notice] %>
+      </p>
+      <p id="alert">
+        <%= flash[:alert] %>
+      </p>
+    </div>
+
+    <%= yield %>
+    <footer class="footer">
+      <div class="container">
+        <div class="content has-text-centered">
+          <p>
+            <strong>Bulma</strong> by <a href="http://jgthms.com">Jeremy Thomas</a>. The source code is licensed
+            <a href="http://opensource.org/licenses/mit-license.php">MIT</a>. The website content
+            is licensed <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC ANS 4.0</a>.
+          </p>
+          <p>
+            <a class="icon" href="https://github.com/jgthms/bulma">
+              <i class="fa fa-github"></i>
+            </a>
+          </p>
+        </div>
+      </div>
+    </footer>
+    <script async type="text/javascript" src="../js/bulma.js"></script>
+  </body>
+</html>

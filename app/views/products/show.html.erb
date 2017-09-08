@@ -1,0 +1,57 @@
+<div class="section product-header">
+  <div class="container">
+    <div class="columns">
+      <div class="column">
+        <span class="title is-3">
+          <%= @site.name %>
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="section">
+  <div class="container">
+    <div class="columns">
+      <div class="column is-6">
+        <div class="image is-2by2">
+          <%= attachment_image_tag @product, :image, :fill, 1000, 1000, format: 'jpeg' %>
+        </div>
+      </div>
+      <div class="column is-5 is-offset-1">
+        <div class="title is-2">
+          <%= @product.title %>
+        </div>
+        <% @tags.each do |tag| %>
+          <span class="tag is-danger">
+            <%= tag.name %>
+          </span>
+        <% end %>
+        <hr>
+        <p>
+          <%= @product.introduction %>
+        </p>
+        <br>
+        <p class="title is-5 has-text-muted">
+          <%= @product.price.to_s(:delimited) %>円
+        </p>
+
+        <%= link_to "amazonで見る", "https://www.amazon.co.jp/gp/product/#{@product.amazon_id}", :class => "button is-warning" %>
+        <br>
+        
+      </div>
+    </div>
+    <div class="container">
+      <div class="columns">
+        <div class="column">
+          <span class="title is-3">
+            関連商品
+          </span>
+        </div>
+      </div>
+      </div>
+        <%= render 'products_list' %>
+      </div>
+    </div>
+  </div>
+</div>
+

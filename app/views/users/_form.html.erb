@@ -1,0 +1,21 @@
+<%= form_with(model: @user, local: true) do |form| %>
+  <div class="box">
+    <%= form.label :メールアドレス, :class => "label" %>
+    <p class="control">
+      <%= form.text_field :email, :class => "input", placeholder: "example.com" %>
+    </p>
+    <%= form.label :パスワード, :class => "label" %>
+    <p class="control">
+      <%= form.password_field :password, :class => "input", placeholder: "●●●●●●●" %>
+    </p>
+    <%= form.label :パスワード確認, :class => "label" %>
+    <p class="control">
+      <%= form.password_field :password_confirmation , :class => "input", placeholder: "●●●●●●●" %>
+    </p>
+    <hr>
+    <p class="control">
+      <%= form.submit "submit", data: { disable_with: "sending..."}, :class => "button is-primary" %>
+    </p>
+  </div>
+
+<% end %>

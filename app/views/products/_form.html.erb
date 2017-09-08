@@ -1,0 +1,58 @@
+<%= form_with(model: @product, local: true) do |form| %>
+  <div class="box">
+    <%= form.hidden_field :site_id, :value => @site.id %>
+    <%= form.hidden_field :product_id, :value => @product.id %>
+    <%= form.label :タイトル, :class => "label" %>
+    <p class="control">
+      <%= form.text_field :title, :class => "input", placeholder: "title.." %>
+    </p>
+    <br>
+    <%= form.label :商品説明, :class => "label" %>
+    <p class="control">
+      <%= form.text_area :introduction, :class => "textarea",placeholder: "10 lines of textarea", rows: "10" %>
+    </p>
+    <br>
+    <%= form.label :価格, :class => "label" %>
+    <p class="control">
+      <%= form.text_field :plice, :class => "input", placeholder: "1000000.." %>
+    </p>
+    <br>
+    <%= form.label :amazon_id, :class => "label" %>
+    <p class="control">
+      <%= form.text_field :amazon_id, :class => "input", placeholder: "1RWAS33F" %>
+    </p>
+    <br>
+    
+    <p class="control">
+      <%= form.attachment_field :image, :class => "file-input" %>
+    </p>
+    
+    <% if @product.image %>
+      <div class="field">
+        <%= attachment_image_tag @product, :image, :fill, 100, 100, format: 'jpeg' %>
+        <%= form.label :削除する %>
+        <%= form.check_box :remove_image, :class => "checkbox" %>
+      </div>
+    <% end %>
+
+    
+    <div class="field">
+      <div class="file is-boxed">
+        <span class="file-cta">
+         <%= form.attachment_field :image, :class => "" %>
+         <%= form.label :画像アップロード, :class => "file-label" %>
+      </span>
+      </div>
+    </div>
+
+    <br>
+    <%= form.label :公開ステータス, :class => "label" %>
+    <p class="control">
+      <%= form.check_box :release_status, :class => "checkbox" %>
+    </p>
+    <hr>
+    <p class="control">
+      <%= form.submit "submit", data: { disable_with: "sending..."}, :class => "button is-primary" %>
+    </p>
+  </div>
+<% end %>

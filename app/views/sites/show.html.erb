@@ -1,0 +1,18 @@
+<section class="hero is-primary is-medium">
+  <div class="hero-body">
+    <div class="container has-text-centered">
+      <h1 class="title is-2">
+        <%= @site.name %>
+      </h1>
+      <h2 class="subtitle is-4">
+        <%= @site.caption %>
+      </h2>
+    </div>
+  </div>
+</section>
+<br>
+<div class="container profile">
+  <%= render 'tag_list' %>
+  <br>
+  <%= render 'products/products_list' %>
+</div>
