@@ -1,26 +1,12 @@
 <%= form_with(model: @tag, local: true) do |form| %>
-  <% if tag.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(tag.errors.count, "error") %> prohibited this tag from being saved:</h2>
+  <%= form.hidden_field :site_id, id: :site_id, :value => @site.id %>
 
-      <ul>
-      <% tag.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= form.hidden_field :site_id, id: :site_id, :value => @site.id %>
-  </div>
-
-  <div class="field">
-    <%= form.label :タグ名 %>
-    <%= form.text_field :name, id: :tag_name %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit '追加' %>
-  </div>
+  <%= form.label :タグ名, :class => "label" %>
+  <p class="control">
+    <%= form.text_field :name, :class => "input", placeholder: "name.." %>
+  </p>
+  <br>
+  <p class="control">
+    <%= form.submit "submit", data: { disable_with: "sending..."}, :class => "button is-primary" %>
+  </p>
 <% end %>

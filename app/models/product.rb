@@ -11,4 +11,5 @@ class Product < ApplicationRecord
   # validates :introduction, presence: true
   # validates :amazon_id, presence: true
   # validates_presence_of :image
+
 end

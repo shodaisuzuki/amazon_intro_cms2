@@ -30,9 +30,11 @@
         <br>
       </div>
     <% end %>
-    <div class="column is-3">
-      <%= paginate @products %>
-    </div>
+    <% if @products.count >= 5 %>
+      <div class="column is-3">
+        <%= paginate @products %>
+      </div>
+    <% end %>
     <br>
   </div>
 </div>

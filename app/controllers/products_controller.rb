@@ -1,8 +1,8 @@
 class ProductsController < ApplicationController
   before_action :set_product, only: [:show, :edit, :update, :destroy]
-  before_action :set_site, only: [:index, :show,:create, :new, :edit, :update, :destroy]
-  before_action :set_user, only: [:new, :create]
-  before_action :site_owner?, except: [:show]
+  before_action :set_site, only: [:index, :show, :create, :new, :edit,:destroy]
+  before_action :set_user, only: [:new,]
+  before_action :site_owner?, except: [:show, :update]
 
   # GET /products
   # GET /products.json
@@ -14,8 +14,7 @@ class ProductsController < ApplicationController
   # GET /products/1.json
   def show
     @tags = @product.product_tags
-    #TODO: @productと同じタグのproductsを返すメソッド追加
-    @products = @site.products.all.page(params[:page]).per(4)
+    @products = @tags.map { |tag| tag.product if tag.product.id == @product.id }.take(4)
   end
 
   # GET /products/new
@@ -31,11 +30,10 @@ class ProductsController < ApplicationController
   # POST /products.json
   def create
     @product = Product.new(product_params)
-    @site = product_params[:site_id]
 
     respond_to do |format|
       if @product.save
-        format.html { redirect_to user_path(@user), notice: '商品の作成に成功しました' }
+        format.html { redirect_to site_path(@site), notice: '商品の作成に成功しました' }
         format.json { render :show, status: :created, location: @product }
       else
         format.html { render :new }
@@ -47,6 +45,10 @@ class ProductsController < ApplicationController
   # PATCH/PUT /products/1
   # PATCH/PUT /products/1.json
   def update
+      @site = Site.find(product_params[:site_id])
+      @user = @site.user
+
+      site_owner?
       respond_to do |format|
       if @product.update(product_params)
         format.html { redirect_to site_path(@site), notice: "商品#{@product.title}を編集しました" }
@@ -61,9 +63,9 @@ class ProductsController < ApplicationController
   # DELETE /products/1
   # DELETE /products/1.json
   def destroy
-    @product.destroy1
+    @product.destroy
     respond_to do |format|
-      format.html { redirect_to site_products_path(@site), notice: '商品を削除しました' }
+      format.html { redirect_to site_path(@site), notice: '商品を削除しました' }
       format.json { head :no_content }
     end
   end

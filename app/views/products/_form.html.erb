@@ -1,7 +1,6 @@
 <%= form_with(model: @product, local: true) do |form| %>
   <div class="box">
-    <%= form.hidden_field :site_id, :value => @site.id %>
-    <%= form.hidden_field :product_id, :value => @product.id %>
+      <%= form.hidden_field :site_id, :value => @site.id %>
     <%= form.label :タイトル, :class => "label" %>
     <p class="control">
       <%= form.text_field :title, :class => "input", placeholder: "title.." %>
@@ -14,7 +13,7 @@
     <br>
     <%= form.label :価格, :class => "label" %>
     <p class="control">
-      <%= form.text_field :plice, :class => "input", placeholder: "1000000.." %>
+      <%= form.text_field :price, :class => "input", placeholder: "1000000.." %>
     </p>
     <br>
     <%= form.label :amazon_id, :class => "label" %>
